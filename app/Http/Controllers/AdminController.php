@@ -22,7 +22,7 @@ class AdminController extends Controller
         ]);
 
         $admin=User::find(1);
-        if (Hash::check($request->password, $admin->password)) {
+        if (Hash::check($request->password, $admin->password) && $admin->email==$request->email) {
             session(['admin' => $admin]);
             return redirect()->route('admin.dashboard');
         }
